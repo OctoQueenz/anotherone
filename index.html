@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da | OctoQueenz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/roboto/4.5.4/roboto.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff3333;
+            --primary-bright: #ff4444;
+            --background: #050505;
+            --text: #ffffff;
+            --neon-glow: 0 0 7px #ff3333, 0 0 10px #ff3333, 0 0 21px #ff3333, 0 0 42px #ff3333;
+            --neon-glow-bright: 0 0 10px #ff4444, 0 0 20px #ff4444, 0 0 30px #ff4444;
+            --subtle-neon: 0 0 5px #ff3333, 0 0 10px #ff3333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.1);
+        }
+
+        .nav-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-bright);
+            text-shadow: var(--subtle-neon);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            box-shadow: var(--subtle-neon);
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--primary-bright);
+            text-shadow: var(--neon-glow);
+            animation: pulseNeon 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseNeon {
+            from {
+                text-shadow: var(--neon-glow);
+            }
+            to {
+                text-shadow: var(--neon-glow-bright);
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0.5rem auto;
+            animation: fadeIn 1s ease-out 0.5s backwards;
+        }
+
+        .section {
+            margin: 8rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--primary-bright);
+            text-shadow: var(--neon-glow);
+        }
+
+        .section-intro {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #aaa;
+        }
+
+        .quotes-section {
+            background: rgba(255, 51, 51, 0.05);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin: 4rem 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #aaa;
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            background: rgba(255, 51, 51, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .quote:hover {
+            border-left-color: var(--primary-bright);
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.1);
+            text-shadow: var(--subtle-neon);
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .identity-card {
+            background: rgba(255, 51, 51, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 51, 51, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .identity-card:hover {
+            background: rgba(255, 51, 51, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.15);
+        }
+
+        .identity-card h3 {
+            color: var(--primary-bright);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-shadow: var(--subtle-neon);
+        }
+
+        .values-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .values-list li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .values-list li:hover {
+            transform: translateX(10px);
+            text-shadow: var(--subtle-neon);
+        }
+
+        .values-list li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            text-shadow: var(--subtle-neon);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .section-intro {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#beliefs" class="nav-link">Beliefs</a>
+            <a href="#pursuits" class="nav-link">Pursuits</a>
+            <a href="#promise" class="nav-link">Promise</a>
+            <a href="#quotes" class="nav-link">Quotes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <h1>Da | OctoQueenz</h1>
+                <p>Mechanical Engineer by Degree • Restaurateur by Chance • Entrepreneur by Choice</p>
+                <p>Thai Blood | Canadian Heart | Arabian Soul</p>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2>Who I Am</h2>
+            <p class="section-intro">
+                A multicultural bridge-builder, combining analytical thinking with creative spirit. My journey has taken me from engineering laboratories to restaurant kitchens, and finally to entrepreneurial ventures - each step adding a new layer to my perspective on life and success.
+            </p>
+            <div class="identity-grid">
+                <div class="identity-card">
+                    <h3>Engineer</h3>
+                    <p>Approaching life's challenges with analytical precision and creative problem-solving, bringing the structured mindset of engineering to every endeavor.</p>
+                </div>
+                <div class="identity-card">
+                    <h3>Entrepreneur</h3>
+                    <p>Creating value through innovation and calculated risk-taking, always seeking opportunities to make a positive impact while building sustainable ventures.</p>
+                </div>
+                <div class="identity-card">
+                    <h3>Explorer</h3>
+                    <p>Experimenting my way through life, guided by ancient wisdom & modern science, embracing the unknown with curiosity and courage.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="beliefs" class="section">
+            <h2>What I Believe</h2>
+            <p class="section-intro">
+                My worldview is shaped by the convergence of Eastern philosophy and Western pragmatism. I believe in the power of intentional living, the wisdom of ancient traditions, and the innovative potential of modern science - finding harmony in their intersection.
+            </p>
+        </section>
+
+        <section id="pursuits" class="section">
+            <h2>What I Pursue</h2>
+            <p class="section-intro">
+                My pursuit of freedom extends beyond the physical realm into intellectual, emotional, and spiritual dimensions. I seek to create spaces where innovation thrives, where ancient wisdom meets modern understanding, and where diverse perspectives unite to create something greater than the sum of their parts.
+            </p>
+            <div class="values-list">
+                <p>I actively pursue:</p>
+                <ul>
+                    <li>Freedom in all its forms - movement, choice, thought, and spirit</li>
+                    <li>Eternal learning and meaningful application of knowledge</li>
+                    <li>Balance between tradition and innovation</li>
+                    <li>Wellness in body, mind, and spirit</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="promise" class="section">
+            <h2>My Promise</h2>
+            <p class="section-intro">
+                My commitment to the world is to create spaces and opportunities where people can thrive authentically, where diversity is celebrated, and where ancient wisdom and modern innovation work hand in hand to create a better future for all.
+            </p>
+            <div class="values-list">
+                <p>I promise to build a world where:</p>
+                <ul>
+                    <li>People live intentionally but collaboratively</li>
+                    <li>Ancient wisdom and modern innovation coexist</li>
+                    <li>Everyone feels safe to be themselves</li>
+                    <li>Communities thrive through mutual support</li>
+                    <li>Learning never stops</li>
+                    <li>Wellness is a way of life</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="quotes" class="section">
+            <h2>Guiding Wisdom</h2>
+            <p class="section-intro">
+                These words of wisdom have shaped my perspective and continue to guide my journey through life.
+            </p>
+            <div class="quotes-section">
+                <div class="quote">
+                    "Science can teach us more about what is out there, but not what is in here. Religion teaches us what is in here." – Life of Pi
+                </div>
+                <div class="quote">
+                    "Who are you?" said the Caterpillar… "I – I hardly know, Sir, just at present," Alice replied rather shyly, "at least I know who I was when I got up this morning, but I think I must have changed several times since then" – Lewis Carroll
+                </div>
+                <div class="quote">
+                    "You will never be completely at home again because part of your heart always will be elsewhere. That is the price you pay for the richness of loving and knowing people in more than one place." - Miriam Adeney
+                </div>
+                <div class="quote">
+                    "As friendships grow closer, conflict becomes more difficult to avoid. And this is often a good thing... Conflict isn't the adversary of connection. Fear of confrontation is." - Jeff Brown
+                </div>
+                <div class="quote">
+                    "I'm not going to stress about anything anymore... So long as I remain committed to myself, find happiness and peace in each given moment, and surrender to the things I cannot change, know my life will be good." – Source Messages
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
